@@ -70,6 +70,17 @@ public class ListDemo
             }
         }
 
+        // automatically creates an iterator
+        for (String n : staff) {
+            if (n.equals("Harry")) {
+                // staff.add("Charlie");
+                // cannot modify the another part of the list while using an iterator without using the iterator to do it
+                // also a concurrent modification exception
+            }
+        }
+
+        System.out.println(staff);
+
 
     }
 }

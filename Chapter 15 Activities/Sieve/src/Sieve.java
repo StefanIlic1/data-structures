@@ -26,7 +26,8 @@ public class Sieve
         for (int i = 2; i <= n; i++) {
             Iterator<Integer> it = nums.iterator();
             while (it.hasNext()) {
-                if (it.next()%i==0) {
+                int nextNum = it.next();
+                if (nextNum%i==0 && nextNum!=i) {
                     it.remove();
                 }
             }

@@ -37,9 +37,23 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         // ...
+        this.rows = new ArrayList<Set<Integer>>();
 
         // create the list of sets for each col (this.cols)
         // ...
+        this.cols = new ArrayList<Set<Integer>>();
+        
+        for (int i = 0; i < N; i++) {
+            this.rows.add(new HashSet<Integer>());
+            this.cols.add(new HashSet<Integer>());
+        }
+
+        for (int row = 0; row < N; row++) {
+            for (int col = 0; col < N; col++){
+                this.rows.get(row).add(this.grid[row][col]);
+                this.cols.get(col).add(this.grid[row][col]);
+            }
+        }
 
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
@@ -48,9 +62,27 @@ public class SudokuSolver {
             6 7 8
          */
         // ...
+        this.squares = new ArrayList<Set<Integer>>();
+
+        for (int i = 0; i < N; i++) {
+            this.squares.add(new HashSet<Integer>());
+        }
+
+        for (int row = 0; row < N; row++) {
+            for (int col = 0; col < N; col++){
+                // if the row is 0-2, 3-5, 6-8, and then if the col is 0-2, 3-5, 6-8 --> add together to get the index of the square
+                int square = (row/M)*M + col/M;
+                this.squares.get(square).add(this.grid[row][col]);
+            }
+        }
 
         // create a hash set for [1..9] (this.nums)
         // ...
+        this.nums = new HashSet<Integer>();
+        for (int i = 1; i <= N; i++) {
+            this.nums.add(i);
+        }
+
 
         // visually inspect that all the sets are correct
         for (int row = 0; row < N; row++) {
@@ -141,15 +173,17 @@ public class SudokuSolver {
     }
 
     public static void main(String[] args) {
-        String fileName = "src/puzzle1.txt";
+        String fileName = "Chapter 15 Activities/Sudoku/src/puzzle1.txt";
 
         SudokuSolver solver = new SudokuSolver(fileName);
         System.out.println(solver);
+        /*
         if (solver.solve()) {
             System.out.println("Solved!");
             System.out.println(solver);
         } else {
             System.out.println("Unsolveable...");
         }
+        */
     }
 }

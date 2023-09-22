@@ -37,6 +37,5 @@ public class Sieve
             System.out.println(number);
         }
 
-
     }
 }

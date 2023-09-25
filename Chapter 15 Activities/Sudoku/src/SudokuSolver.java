@@ -128,6 +128,24 @@ public class SudokuSolver {
          */
         Set<Integer> possibleNums = new HashSet<Integer>();
         possibleNums.addAll(this.nums);
+
+        /**
+         * squares are
+         * 0 1 2
+         * 3 4 5
+         * 6 7 8
+         * 
+         * so multiplying the row by M=3 will get it so that it goes down to the 3rd square and the 6th square
+         * along with the column which does not need to be multiplied because it is aligned properly
+         */
+
+        // remove all of the numbers that are in the currnent row, col, and square that we are in
+        // this is because these are numbers that this current spot cannot be because the square,
+        // col, and row that it is in all already have that number
+        possibleNums.removeAll(this.rows.get(nextRow));
+        possibleNums.removeAll(this.cols.get(nextCol));
+        possibleNums.removeAll(this.squares.get((nextRow/M)*M + nextCol/M));
+
         
         // ...
 
@@ -140,6 +158,11 @@ public class SudokuSolver {
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
             // ...
+            this.grid[nextRow][nextCol] = possibleNum;
+            this.rows.get(nextRow).add(possibleNum);
+            this.cols.get(nextCol).add(possibleNum);
+            this.squares.get((nextRow/M)*M + nextCol/M).add(possibleNum);
+
 
             // recursively solve the board
             if (this.solve()) {
@@ -152,6 +175,10 @@ public class SudokuSolver {
                  sets.
                  */
                 // ...
+                this.grid[nextRow][nextCol] = 0;
+                this.rows.get(nextRow).remove(possibleNum);
+                this.cols.get(nextCol).remove(possibleNum);
+                this.squares.get((nextRow/M)*M + nextCol/M).remove(possibleNum);
             }
         }
 
@@ -176,14 +203,14 @@ public class SudokuSolver {
         String fileName = "Chapter 15 Activities/Sudoku/src/puzzle1.txt";
 
         SudokuSolver solver = new SudokuSolver(fileName);
-        System.out.println(solver);
-        /*
+        //System.out.println(solver);
+        
         if (solver.solve()) {
             System.out.println("Solved!");
             System.out.println(solver);
         } else {
             System.out.println("Unsolveable...");
         }
-        */
+        
     }
 }

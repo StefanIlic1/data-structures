@@ -18,7 +18,7 @@ public class StringLengthMap
         {
 
             // Create your map here
-            
+            Map<Integer,String> lengths = new HashMap<>();
 
             while (in.hasNext())
             {
@@ -26,17 +26,33 @@ public class StringLengthMap
                 Integer len = word.length();
 
                 // Update the map here
-                // Modify Worked Example 15.1
-                
-
+                // Modify worked example 15.1
+                if (lengths.get(len) == null) {
+                    lengths.put(len, word);
+                } else {
+                    String current = lengths.get(len);
+                    current += "," + word;
+                    lengths.put(len, current);
+                }
 
             }
 
+
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i
+
+            for (int i = 1; i <= lengths.size(); i++) {
+                if (lengths.get(i) != null) {
+                    System.out.println(i + ": " + lengths.get(i));
+                } else {
+                    continue;
+                }
+            }
+            
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
+            
         }
     }
 

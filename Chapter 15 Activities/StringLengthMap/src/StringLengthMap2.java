@@ -18,22 +18,30 @@ public class StringLengthMap2
         {
 
             // Create your map here
-            
+            Map<Integer,String> lengths = new HashMap<>();
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Integer len = word.length();
-
+                
                 // Update the map here
                 // Use the Java 8 merge() method
-                
-
+                // probably wrong and should probably use an ide to check this
+                lengths.merge(len, word, (lengths.get(len), ","+word) -> lengths.get(len) + "," + word);;
 
             }
 
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i
+            for (int i = 1; i <= lengths.size(); i++) {
+                if (lengths.get(i) != null) {
+                    System.out.println(i + ": " + lengths.get(i));
+                } else {
+                    continue;
+                }
+            }
+            
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);

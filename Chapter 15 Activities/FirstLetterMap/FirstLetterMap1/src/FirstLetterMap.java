@@ -25,9 +25,12 @@ public class FirstLetterMap
                 String word = clean(in.next());
                 Character c = word.charAt(0);
 
+                Set<String> current = new HashSet<>();
+                current.add(word);
+                
                 // Update the map here
                 // Use the Java 8 merge method
-                firstLetters.merge(c, new HashSet<String>(Arrays.asList(word)), (oldValue, newValue) -> {
+                firstLetters.merge(c,current, (oldValue, newValue) -> {
                     oldValue.addAll(newValue);
                     return oldValue;
                 });

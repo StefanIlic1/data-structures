@@ -12,7 +12,7 @@ public class StringLengthMap2
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "Chapter 15 Activities/StringLengthMap/src/test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
@@ -27,8 +27,8 @@ public class StringLengthMap2
                 
                 // Update the map here
                 // Use the Java 8 merge() method
-                // probably wrong and should probably use an ide to check this
-                lengths.merge(len, word, (lengths.get(len), ","+word) -> lengths.get(len) + "," + word);;
+                // fix the merge method                
+                lengths.merge(len, word, (oldValue, newValue) -> oldValue + "," + newValue);
 
             }
 

@@ -17,12 +17,31 @@ public class HTMLChecker
 {
     public static void main(String[] args)
     {
-        String filename = "src/TagSample1.html";
+        String filename = "Chapter 15 Activities/HTMLChecker/src/TagSample1.html";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
-            . . .
+            Stack<String> stack = new Stack<>();
+            boolean check = true;
+            while (in.hasNext()) {
+                String tag = in.next();
+                if (!tag.contains("/")) {
+                    stack.push(tag);
+                } else {
+                    if (stack.peek().equals(tag.substring(0,1)+tag.substring(2,tag.length()-1))) {
+                        stack.pop();
+                    } else {
+                        check = false;
+                    }
+                }
+            }
+            
+            if (check) {
+                System.out.println("HTML tags are in order");
+            } else {
+                System.out.println("HTML tags are out of order");
+            }
 
 
         } catch (FileNotFoundException e)

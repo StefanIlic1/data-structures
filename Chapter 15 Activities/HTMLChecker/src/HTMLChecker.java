@@ -29,12 +29,15 @@ public class HTMLChecker
                 if (!tag.contains("/")) {
                     stack.push(tag);
                 } else {
-                    if (stack.peek().equals(tag.substring(0,1)+tag.substring(2,tag.length()-1))) {
+                    // if tag is matching without the slash
+                    if (stack.peek().substring(1).equals(tag.substring(2))) {
                         stack.pop();
                     } else {
                         check = false;
+                        break;
                     }
                 }
+                System.out.println(stack);
             }
             
             if (check) {

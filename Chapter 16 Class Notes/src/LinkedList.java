@@ -61,8 +61,8 @@ public class LinkedList
         Returns an iterator for iterating through this list.
         @return an iterator for iterating through this list
     */
-    public LinkedListIterator listIterator() {
-        return null;
+    public ListIterator listIterator() {
+        return new LinkedListIterator();
     }
 
 

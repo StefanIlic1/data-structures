@@ -49,6 +49,17 @@ public class LinkedList
         return false;
     }
 
+    public boolean contains2(Object obj) {
+        // solve it for if there is no first object at all
+        if (first == null) return false;
+        return contains(first, obj);
+    }
+
+    private static boolean contains(Node start, Object obj) {
+        // solve it for if there is no next
+        return Node.data.equals(obj) || contains(Node.next, obj);
+    }
+
     /**
         Returns the first element in the linked list.
         @return the first element in the linked list

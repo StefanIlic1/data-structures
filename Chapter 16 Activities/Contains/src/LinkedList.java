@@ -57,7 +57,11 @@ public class LinkedList
 
     private static boolean contains(Node start, Object obj) {
         // solve it for if there is no next
-        return Node.data.equals(obj) || contains(Node.next, obj);
+        if (start.next == null) {
+            return start.data.equals(obj);
+        }
+        
+        return start.data.equals(obj) || contains(start.next, obj);
     }
 
     /**

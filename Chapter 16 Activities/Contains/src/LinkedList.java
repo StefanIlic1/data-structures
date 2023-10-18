@@ -31,7 +31,18 @@ public class LinkedList
     */
     public int size()
     {
+        for (Node node : this) {
+            currentSize++;
+        }
         return currentSize;
+    }
+
+    public int size2() {
+        return 0;
+    }
+
+    private static int size(Node start) {
+        return 0;
     }
 
     /**

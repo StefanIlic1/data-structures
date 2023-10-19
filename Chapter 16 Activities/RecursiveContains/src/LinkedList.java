@@ -39,19 +39,19 @@ public class LinkedList
         @param obj The object to be checked for.
         @return If the object exists in the list.
     */
-    public boolean contains(Object obj)
-    {
-        // ...
+    public boolean contains(Object obj) {
+        // solve it for if there is no first object at all
+        if (first == null) return false;
+        return contains(first, obj);
     }
 
-    /**
-        Checks if the given node or any in its following nodes contains the given object.
-        @param obj The object to be checked for.
-        @return If the object exists in the node or its following nodes.
-    */
-    public static boolean contains(Node start, Object obj)
-    {
-        // ...
+    private static boolean contains(Node start, Object obj) {
+        // solve it for if there is no next
+        if (start.next == null) {
+            return start.data.equals(obj);
+        }
+        
+        return start.data.equals(obj) || contains(start.next, obj);
     }
 
     /**

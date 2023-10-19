@@ -24,10 +24,16 @@ public class LinkedList
         Computes the size of the linked list.
         @return the number of elements in the list
     */
-    public int size()
-    {
-        . . .
+    public int size() {
+        Node current = first;
+        if (current == null) return 0;
+        return size(current);
     }
+
+    private static int size(Node start) {
+        if (start == null) { return 0; }
+        return 1 + size(start.next);
+    } 
 
 
     /**

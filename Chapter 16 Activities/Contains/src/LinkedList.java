@@ -25,25 +25,7 @@ public class LinkedList
         lastIndex = -1;
     }
 
-    /**
-        Computes the size of the linked list
-        @return the number of elements in the list
-    */
-    public int size()
-    {
-        for (Node node : this) {
-            currentSize++;
-        }
-        return currentSize;
-    }
-
-    public int size2() {
-        return 0;
-    }
-
-    private static int size(Node start) {
-        return 0;
-    }
+    
 
     /**
         Checks if this linked list contains the given object.
@@ -52,27 +34,14 @@ public class LinkedList
     */
     public boolean contains(Object obj)
     {
-        for (Node element : this) {
-            if (element.data.equals(obj)) {
+        Node current = first;
+        while (current != null) {
+            if (current.data.equals(obj)) {
                 return true;
             }
+            current = current.next;
         }
         return false;
-    }
-
-    public boolean contains2(Object obj) {
-        // solve it for if there is no first object at all
-        if (first == null) return false;
-        return contains(first, obj);
-    }
-
-    private static boolean contains(Node start, Object obj) {
-        // solve it for if there is no next
-        if (start.next == null) {
-            return start.data.equals(obj);
-        }
-        
-        return start.data.equals(obj) || contains(start.next, obj);
     }
 
     /**

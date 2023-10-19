@@ -22,9 +22,18 @@ public class LinkedList
         Computes the size of the linked list.
         @return the number of elements in the list
     */
-    public int size()
-    {
-        . . .
+    /**
+        Computes the size of the linked list
+        @return the number of elements in the list
+    */
+    public int size() {
+        int count = 0;
+        Node current = first;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
     /**

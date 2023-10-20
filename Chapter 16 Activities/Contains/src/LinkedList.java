@@ -24,7 +24,6 @@ public class LinkedList
         last = null;
         lastIndex = -1;
     }
-
     
 
     /**
@@ -42,6 +41,7 @@ public class LinkedList
             current = current.next;
         }
         return false;
+
     }
 
     /**

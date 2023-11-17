@@ -127,7 +127,7 @@ public class MorseCode
 
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == ' ') {
-                morse.append("  ")
+                morse.append("  ");
             } else{
                 morse.append(codeMap.get(text.charAt(i)));
                 morse.append(" ");

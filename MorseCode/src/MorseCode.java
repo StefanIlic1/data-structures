@@ -63,7 +63,7 @@ public class MorseCode
         addSymbol('.', ".-.-.-");
         addSymbol(',', "--..--");
         addSymbol('?', "..--..");
-    }
+    }   
 
     /**
      * Inserts a letter and its Morse code string into the encoding map
@@ -74,6 +74,8 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+        codeMap.put(letter, code);
+        treeInsert(letter, code);
     }
 
     /**
@@ -88,6 +90,25 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+        TreeNode prev = decodeTree;
+        TreeNode current;
+        for (int i = 0; i < code.length(); i++) {
+            if (code.charAt(i) == '.') {
+                if (prev.getLeft() == null) {
+                    prev.setLeft(new TreeNode(' '));
+                }
+                current = prev.getLeft();
+            } else {
+                if (prev.getRight() == null) {
+                    prev.setRight(new TreeNode(' '));
+                }
+                current = prev.getRight();
+            }
+            TreeNode temp = current;
+            prev = temp;
+            current = null;
+        }
+        prev.setValue(code);
     }
 
     /**
@@ -103,6 +124,15 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == ' ') {
+                morse.append("  ")
+            } else{
+                morse.append(codeMap.get(text.charAt(i)));
+                morse.append(" ");
+            }
+        }
 
         return morse.toString();
     }

@@ -147,9 +147,34 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        String[] words = morse.split("  ");
+        for (String word : words) {
+            String[] letters = word.split(" ");
+
+            for (String letter: letters) {
+                boolean found = false;
+                TreeNode current = decodeTree;
+                String sequence = "";
+                String finalLetter = "";
+                int i = 0;
+                while (!found) {
+                    if (sequence.equals(letter)) {
+                        finalLetter = (String) current.getValue();
+                        found = true;
+                    } else {
+                        sequence += letter.charAt(i);
+                        if (letter.charAt(i) == '.') {
+                            current = current.getLeft();
+                        } else {
+                            current = current.getRight();
+                        }
+                        i++;
+                    }
+                }
+                text.append(finalLetter);
+            }
+            text.append(" ");
+        }
 
         return text.toString();
     }

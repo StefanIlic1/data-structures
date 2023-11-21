@@ -147,31 +147,22 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        String[] words = morse.split("  ");
-        for (String word : words) {
-            String[] letters = word.split(" ");
-
-            for (String letter: letters) {
-                boolean found = false;
+        String[] morseWords = morse.split("  ");
+        
+        for (String morseWord : morseWords) {
+            morseWord = morseWord.trim();
+            
+            for (int i = 0; i < morseWord.length(); i++) {
                 TreeNode current = decodeTree;
-                String sequence = "";
-                String finalLetter = "";
-                int i = 0;
-                while (!found) {
-                    if (sequence.equals(letter)) {
-                        finalLetter = (String) current.getValue();
-                        found = true;
+                if (morseWord.charAt(i+1) == ' ') {
+                    text.append(current);
+                } else {
+                    if (morseWord.charAt(i) == '.') {
+                        current = current.getLeft();
                     } else {
-                        sequence += letter.charAt(i);
-                        if (letter.charAt(i) == '.') {
-                            current = current.getLeft();
-                        } else {
-                            current = current.getRight();
-                        }
-                        i++;
+                        current = current.getRight();
                     }
                 }
-                text.append(finalLetter);
             }
             text.append(" ");
         }

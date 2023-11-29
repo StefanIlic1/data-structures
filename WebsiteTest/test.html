@@ -1,12 +1,27 @@
-<!-- FILEPATH: /c:/Users/sinko/OneDrive/Documents/GitHub/data-structures/WebsiteTest/test.html -->
-
+<!-- FILEPATH: /c:/Users/silic/Desktop/SoftwareEngineering-Stefan/data-structures/WebsiteTest/test.html -->
+<!-- BEGIN: be15d9bcejpp -->
+<link rel="stylesheet" href="stylesheet.css">
 <!DOCTYPE html>
 <html>
 <body>
     <h1>Welcome to Page 1</h1>
     <p>Website</p>
+    
+    <script>
+        function func() {
+            var date = new Date();
+            var day = "Time right now: " + (date.getUTCHours()-6) + ":" + date.getUTCMinutes();
+            document.getElementById("demo").innerHTML = day
+        }
+    </script>
+
+    <p id="demo">Something</p>
+    <button type="button" onclick=func()>button</button>
+
+    <br>
+
     <a href="test2.html">Go to Page 2</a>
     <br>
-    <a href="https://www.google.com">External Link</a>
+    <a href="https://www.google.com">Go to google</a>
 </body>
 </html>
